@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "betteronline",
+	"version": "1.0.0",
+	"name": "BetterOnline",
+	"description": "20 个实用指令模组",
+	"authors": ["qihaoxuan_MC"],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["com.betteronline.BetterOnline"]
+	},
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-permissions-api-v0": "*"
+	}
+}
