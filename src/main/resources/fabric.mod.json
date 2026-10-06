@@ -16,5 +16,8 @@
 		"java": ">=21",
 		"fabric-api": "*",
 		"fabric-permissions-api-v0": "*"
-	}
+	},
+	"mixins": [
+		"betteronline.mixins.json"
+	]
 }

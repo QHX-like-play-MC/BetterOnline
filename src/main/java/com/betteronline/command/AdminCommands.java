@@ -158,7 +158,7 @@ public class AdminCommands {
             sendHelp(src, "§fbetteronline:move", "/gamerule betteronline:move ",
                     "§7允许玩家移动，false 则强制拉回", "§7默认：§atrue");
             sendHelp(src, "§fbetteronline:fly", "/gamerule betteronline:fly ",
-                    "§7预留规则（暂未实现）", "§7默认：§cfalse");
+                    "§7允许或禁止玩家飞行", "§7默认：§cfalse");
         }
 
         src.sendFeedback(() -> Text.literal("§6§m                                             "), false);

@@ -19,6 +19,18 @@ dependencies {
 	include(modImplementation('me.lucko:fabric-permissions-api:0.6.1'))
 }
 
+loom {
+	loom {
+		// 保留原有配置...
+		runs {
+			client {
+				vmArgs "-Dmixin.debug.export=true",
+						"-Dmixin.dumpTargetOnFailure=true"
+			}
+		}
+	}
+}
+
 processResources {
 	def version = project.version
 	inputs.property "version", version

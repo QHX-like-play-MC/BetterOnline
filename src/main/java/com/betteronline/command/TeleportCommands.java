@@ -21,6 +21,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -100,8 +104,25 @@ public class TeleportCommands {
             TpaManager.addRequest(new TpaManager.TpaRequest(sender, target, here));
 
             String type = here ? "tpahere" : "tpa";
-            target.sendMessage(Text.literal("§e" + sender.getName().getString()
-                    + " §f向你发送了 §a/" + type + " §f请求，使用 §a/tpaaccept §f或 §c/tparefuse"), false);
+            // 构建带点击按钮的消息
+            MutableText msg = Text.literal("§e" + sender.getName().getString()
+                    + " §f向你发送了 §a/" + type + " §f请求：");
+
+// [同意] 按钮
+            msg.append(Text.literal(" §a§l[同意]")
+                    .setStyle(Style.EMPTY
+                            .withClickEvent(new ClickEvent.RunCommand("/tpaaccept"))
+                            .withHoverEvent(new HoverEvent.ShowText(
+                                    Text.literal("§a点击同意 " + sender.getName().getString() + " 的传送请求")))));
+
+// [拒绝] 按钮
+            msg.append(Text.literal(" §c§l[拒绝]")
+                    .setStyle(Style.EMPTY
+                            .withClickEvent(new ClickEvent.RunCommand("/tparefuse"))
+                            .withHoverEvent(new HoverEvent.ShowText(
+                                    Text.literal("§c点击拒绝 " + sender.getName().getString() + " 的传送请求")))));
+
+            target.sendMessage(msg, false);
             sender.sendMessage(Text.literal("§a已向 " + target.getName().getString() + " 发送请求"), true);
             return 1;
         } catch (Exception e) {
